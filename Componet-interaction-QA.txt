@@ -1,0 +1,13 @@
+1) What options do we have to establish such communication? 
+	-  @Input 
+	-  @Output
+	-  ViewChild
+	-  Rxjs Subject
+2) For each option describe what are the pros and cons of this solution?
+	- Both Input and Output are one way data binding
+	- if we pass data from parent to child then we should make sure that the data is updating to child whenever it changes using ngOnChanges
+3) For each option describe what are the cases the solution fits best?
+     -If we can pass data from parent to child then use @Input 
+	 -If we can pass data from child to parent then use @Output
+	 -If we want to access methods or elementRef of child component or directive from parent component then use @ViewChild
+	 -If there there is no relationship between two components then use service(rxjs Subject)

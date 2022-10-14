@@ -1,0 +1,23 @@
+<title>HTTP Request Handling</title>
+<body>
+    <h1>HTTP Request Handling</h1>
+    <script>
+        const fetchRequest = (url) => {
+          return fetch(url).then((res) => res.json())
+        }
+        fetch('https://rickandmortyapi.com/api/episode').then(response => {return response.json()}).then(async(obj) => {
+            if(obj?.results?.length > 0){
+                 await obj.results.map(async(episode) => {
+                    const promises = [];
+                    await episode.characters.map(url => {
+                        promises.push(fetchRequest(url));
+                    })
+                     Promise.all(promises).then(response => episode.characters = response);
+                 })
+                 console.log('Transformed Object - ',obj)
+            }
+        }).catch(function(error){
+            console.error(error)
+        });
+    </script>
+</body>
